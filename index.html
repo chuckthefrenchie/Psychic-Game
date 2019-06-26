@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Psychic Game</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="jumbotron">
+
+        <div class="text-center">
+
+            <h1 class="text-center">The Psychic Game</h1>
+            <h2>Guess what letter I am thinking of ?</h2>
+            <br>
+            <p id="userchoice-text"></p>
+            <p id="computerchoice-text"></p>
+            <br>
+            <p id="WinsNumber">Wins: </p>
+            <p id="LossesNumber">Losses: </p>
+            <p id="GuessesLeft">Guesses Left: </p>
+            <p id="Guesses">Your guesses so far: </p>
+
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        let computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+        let userChoiceText = document.getElementById("userchoice-text");
+        let computerChoiceText = document.getElementById("computerchoice-text");
+        
+        document.onkeyup = function(event){
+        let userGuess = event.key.toLowerCase();
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+        userChoiceText.textContent = "You chose: " + userGuess;
+        computerChoiceText.textContent = "The computer chose: " + computerGuess;
+
+
+        let wins = 0;
+        let losses = 0;
+        let guessesLeft = 9;
+        let yourGuessesSoFar = 0;
+
+
+        if (userGuess = computerGuess) {
+            alert("you won!");
+            win++;
+            guessesLeft--;
+            yourGuessesSoFar++;
+        } else {
+            alert("you lost!");
+            losses++;
+            guessesLeft--;
+            yourGuessesSoFar++;
+        };
+    }
+    
+
+        
+        
+
+
+    </script>
+
+</body>
+
+</html>
