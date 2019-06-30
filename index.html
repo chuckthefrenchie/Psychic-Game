@@ -19,10 +19,10 @@
             <p id="userchoice-text"></p>
             <p id="computerchoice-text"></p>
             <br>
-            <p id="WinsNumber">Wins: </p>
-            <p id="LossesNumber">Losses: </p>
-            <p id="GuessesLeft">Guesses Left: </p>
-            <p id="Guesses">Your guesses so far: </p>
+            <p id = "wins"> Wins: </p>
+            <p id = "losses">Losses: </p>
+            <p id = "guessesLeft"> Guesses Left: </p>
+            <p id = "guessesSoFar"> Your guesses so far: <span id="yourGuesses"></span> </p>
 
         </div>
 
@@ -33,35 +33,61 @@
 
         let computerChoices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 
-        let userChoiceText = document.getElementById("userchoice-text");
-        let computerChoiceText = document.getElementById("computerchoice-text");
-        
-        document.onkeyup = function(event){
-        let userGuess = event.key.toLowerCase();
-        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-        userChoiceText.textContent = "You chose: " + userGuess;
-        computerChoiceText.textContent = "The computer chose: " + computerGuess;
-
-
-        let wins = 0;
-        let losses = 0;
+        let UserWins = 0;
+        let UserLosses = 0;
         let guessesLeft = 9;
         let yourGuessesSoFar = 0;
 
+        let userChoiceText = document.getElementById("userchoice-text");
+        let computerChoiceText = document.getElementById("computerchoice-text");
+        let userGuessesP = document.getElementById("guessesLeft");
+        let computerLetter = generateRandomLetter();
 
-        if (userGuess = computerGuess) {
+        document.onkeyup = function(event){
+        let userGuess = event.key.toLowerCase();
+        
+        
+        userChoiceText.textContent = "You chose: " + userGuess;
+        computerChoiceText.textContent = "The computer chose: " + computerLetter;
+        
+        let one = document.getElementById("wins");
+        wins.textContent = "Wins :" + UserWins;
+        
+        let two = document.getElementById("losses");
+        losses.textContent = "Losses :" + UserLosses;
+
+        let three = document.getElementById("guessesLeft");
+        userGuessesP.textContent = "Guesses left: " + guessesLeft;
+        console.log(computerLetter)
+
+        let four = document.getElementById("yourGuesses");
+        yourGuesses.textContent += userGuess + " , ";
+        
+        if (userGuess === computerLetter) {
+            UserWins++;
+            guessesLeft--;
+            yourGuesses.textContent= "";
             alert("you won!");
-            win++;
-            guessesLeft--;
-            yourGuessesSoFar++;
-        } else {
+            
+        } 
+        else if(guessesLeft < 1){
+            UserLosses++;
+            guessesLeft = 9;
             alert("you lost!");
-            losses++;
+            yourGuesses.textContent = "";
+        } 
+        else {
             guessesLeft--;
-            yourGuessesSoFar++;
-        };
+           
+        }
+        userGuessesP.textContent = "Guesses left: " + guessesLeft;
     }
-    
+
+    function generateRandomLetter() {
+        return computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    } 
+     
+     
 
         
         
